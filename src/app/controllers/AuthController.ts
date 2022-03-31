@@ -10,32 +10,34 @@ class AuthController {
   async authenticate(req: Request, res: Response) {
     const userRepository = AppDataSource.getMongoRepository(User)
 
-    const { nome, password } = req.body;
+    const { email, password } = req.body;
 
-    const user = await userRepository.findOne({ where: { nome } });
-    console.log(user);
+    const user = await userRepository.findOne({ where: { email } });
 
     if (!user) {
       return res.sendStatus(401);
     }
 
-    // const isValidPassword = await bcrypt.compare(password, user.password)
-    // const isValidPassword = password == user.password;
+    const isValidPassword = await bcrypt.compare(password, user.password)
 
-    // console.log(password);
-    // console.log(user.password);
+    if (!isValidPassword) {
+      return res.sendStatus(401)
+    }
 
-    // if (!isValidPassword) {
-    //   console.log('oi');
+    const token = jwt.sign({ id: user.id }, `help-duck-secret-${user.role}`, { expiresIn: '1d' })
 
-    //   return res.sendStatus(401)
-    // }
-
-    const token = jwt.sign({ id: user._id }, 'secret', { expiresIn: '1d' })
+    // @ts-expect-error proteção para o usuário, sem expor a senha para o client-side
+    delete user.password;
 
     return res.json({
       user,
       token
+    })
+  }
+
+  async test(req: Request, res: Response) {
+    return res.json({
+      "message": "ok"
     })
   }
 }

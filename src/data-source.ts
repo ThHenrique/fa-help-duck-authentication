@@ -3,8 +3,8 @@ import User from "./app/models/User";
 
 export const AppDataSource = new DataSource({
   type: "mongodb",
-  url: "mongodb+srv://root:1234@fa-starting-no-sql.6vnsq.mongodb.net",
-  database: "mercado-livre",
+  url: "mongodb+srv://<user>:<password>@<domain>",
+  database: "api3",
   entities: [User],
 })
 

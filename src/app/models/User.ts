@@ -5,7 +5,7 @@ import bcrypt from "bcryptjs";
 @Entity('user')
 class User {
   @ObjectIdColumn()
-  _id: ObjectID;
+  id: ObjectID;
 
   @Column()
   email: string;
@@ -16,6 +16,8 @@ class User {
   @Column()
   password: string;
 
+  @Column()
+  role: string
 
   hashPassword() {
     this.password = bcrypt.hashSync(this.password, 8)

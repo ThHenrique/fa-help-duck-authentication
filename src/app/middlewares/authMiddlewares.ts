@@ -1,13 +1,9 @@
-import { Request, Response, NextFunction } from 'express'
+import { Request, Response } from 'express'
 import jwt from 'jsonwebtoken';
+import { AppDataSource } from '../../data-source';
+import User from '../models/User';
 
-interface TokenPayload {
-  id: string,
-  iat: number;
-  exp: number
-}
-
-export default function authMiddleware(req: Request, res: Response, next: NextFunction) {
+export default async function authMiddleware(req: Request, res: Response) {
   const { authorization } = req.headers;
 
   if (!authorization) {
@@ -16,15 +12,28 @@ export default function authMiddleware(req: Request, res: Response, next: NextFu
 
   const token = authorization.replace('Bearer', '').trim()
 
+  const userRepository = AppDataSource.getMongoRepository(User)
+
+  const { email } = req.body
+  const user = await userRepository.findOne({ where: { email } });
+
+  if (!user) {
+    res.statusCode = 401
+    return res.json({
+      "authorized": false
+    })
+  }
+
   try {
-    const data = jwt.verify(token, 'secret');
-
-    const { id } = data as TokenPayload;
-
-    req.userId = id;
-
-    return next()
+    jwt.verify(token, `help-duck-secret-${user.role}`);
+    res.statusCode = 200
+    return res.json({
+      "authorized": true
+    })
   } catch {
-    return res.sendStatus(401);
+    res.statusCode = 401
+    return res.json({
+      "authorized": false
+    })
   }
 }

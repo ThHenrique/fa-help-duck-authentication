@@ -1,1 +1,1 @@
-web: ENV_SILENT=true npm run dev
+web: ENV_SILENT=true npm start

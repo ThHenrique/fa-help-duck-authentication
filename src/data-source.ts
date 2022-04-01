@@ -1,10 +1,11 @@
 import { DataSource } from "typeorm";
+import 'dotenv/config'
+
 import User from "./app/models/User";
 
 export const AppDataSource = new DataSource({
   type: "mongodb",
-  url: "mongodb+srv://<user>:<password>@<domain>",
-  database: "api3",
+  url: process.env.MONGODB_CLUSTER,
   entities: [User],
 })
 

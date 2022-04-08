@@ -1,7 +1,6 @@
 import { Router, Request, Response } from 'express';
 
 import AuthController from "./app/controllers/AuthController";
-import authMiddleware from "./app/middlewares/authMiddlewares";
 
 const router = Router()
 
@@ -11,7 +10,7 @@ router.get('/', (req: Request, res: Response) => {
     "message": "The Bugger Duck API: Server Started OK"
   })
 })
-router.post('/auth', AuthController.authenticate)
-router.post('/auth/authorization', authMiddleware)
+router.post('/auth/authentication', AuthController.authenticate)
+router.post('/auth/authorization', AuthController.authorize)
 
 export default router;

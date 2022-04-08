@@ -15,17 +15,12 @@
     }
   ],
   "paths": {
-    "/auth": {
+    "/auth/authentication": {
       "post": {
         "summary": "Login User",
         "description": "this route has the responsibility to authenticate users",
         "tags": [
           "Auth"
-        ],
-        "security": [
-          {
-            "bearerAuth": []
-          }
         ],
         "requestBody": {
           "content": {
@@ -60,6 +55,56 @@
                     },
                     "token": {
                       "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/auth/authorization": {
+      "post": {
+        "summary": "Authorize User",
+        "description": "this route has the responsibility to authorize users",
+        "tags": [
+          "Auth"
+        ],
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Auth"
+              },
+              "examples": {
+                "user": {
+                  "value": {
+                    "id": "6244e9769453707336d0417b"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "401": {
+            "description": "Unauthorized"
+          },
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "authorized": {
+                      "type": "boolean"
                     }
                   }
                 }

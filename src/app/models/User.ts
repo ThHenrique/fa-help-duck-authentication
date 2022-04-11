@@ -11,7 +11,10 @@ class User {
   email: string;
 
   @Column()
-  nome: string;
+  firstName: string;
+
+  @Column()
+  lastName: string;
 
   @Column()
   password: string;

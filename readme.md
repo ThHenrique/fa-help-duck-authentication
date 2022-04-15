@@ -8,7 +8,7 @@ Esta API, que permite a atenticação e autorização dos usuários na plataform
 
 ### :hammer_and_wrench: Tecnologias
 
-As seguintes tecnologias e ferramentas foram utilizadas neste projeto: `TypeScript, ExpressJS, TypeORM, PostgreSQL, Jest, Insomnia, Heroku`
+As seguintes tecnologias e ferramentas foram utilizadas neste projeto: `TypeScript, ExpressJS, TypeORM, MongoDB, Insomnia, Heroku, Swagger`
 
 ### :gear: Como utilizar
 
@@ -19,10 +19,8 @@ Para consumir esta API, é preciso seguir o passo a passo abaixo ou utilizar a U
 No arquivo `.env.example`, complete as variâveis com os valores abaixo e renomeie o arquivo para `.env`.
 
 ```cl
-EARTH_SEARCH=https://earth-search.aws.element84.com/v0
-STAC_API=https://api.stacspec.org/
-
-DEV_SEED=https://sat-api.developmentseed.org/
+MONGODB_CLUSTER=mongodb+srv://<username>:<password>@cluster0.rpjin.mongodb.net/
+PORT=<port ex:3000>
 ```
 
 Para prosseguir, é preciso que todas as ferramentas necessárias estejam devidamente instaladas (Node, Git,...). Para conferir a instalação delas, acesse [este tutorial](https://www.notion.so/Instala-o-das-ferramentas-405f3e8b014649cbb422dee6b5bd0535), já para atualização das ferramentas acesse [este link](https://www.notion.so/Atualiza-o-vers-es-diferentes-09abff4d88d44c459a7c7a925ad15bfa), e caso haja algum problema com essas instalações e/ou atualizações, acesse [este FAQ](https://www.notion.so/Tive-problemas-e-agora-c67378e1319d4723a3211aad8eb987c6). Após os downloads, baixe ou clone este repositório pelo terminal seguindo passo a passo descrito abaixo:
@@ -41,7 +39,7 @@ $ yarn
 $ yarn dev
 ```
 
-O servidor inciará localmente na porta 3333. Use o Insomnia para simular requisições e respostas das rotas (pelo link [https://localhost:3333](https://localhost:3333)) ou utilize o projeto fron-end do "Help Duck" para executar as funcionalidades da aplicação (acesse o repositório por [este link](https://github.com/The-Bugger-Ducks/help-duck-web)).
+O servidor inciará localmente na porta 3000. Use o Insomnia para simular requisições e respostas das rotas (pelo link [https://localhost:3000](https://localhost:3000)) ou utilize o projeto front-end do "Help Duck" para executar as funcionalidades da aplicação (acesse o repositório por [este link](https://github.com/The-Bugger-Ducks/help-duck-web)).
 
 ## :railway_track: Rotas disponíveis
 
@@ -62,10 +60,10 @@ O servidor inciará localmente na porta 3333. Use o Insomnia para simular requis
 | :open_file_folder: src/ @types           | ...                                                                        |
 | :open_file_folder: src/ app/ controllers | Arquivos com os métodos de requisição das rotas                            |
 | :open_file_folder: src/ app/ models      | Arquivos considerados moldes/classes da aplicação                          |
-| :page_facing_up: src/ index.ts           | ...                                                                        |
-| :page_facing_up: src/ routes.ts          | ...                                                                        |
-| :page_facing_up: src/ swagger.json       | ...                                                                        |
-| :page_facing_up: .env.example            | ...                                                                        |
-| :page_facing_up: procfile                | ...                                                                        |
-| :page_facing_up: tsconfig.json           | ...                                                                        |
+| :page_facing_up: src/ index.ts           | Arquivo inicializador dos modulos da aplicação ex: swagger, cors, servidor...                                                                        |
+| :page_facing_up: src/ routes.ts          | Arquivos com os endpoints da aplicação para acesso dos metodos de autenticação e autorização |
+| :page_facing_up: src/ swagger.json       | Arquivo para documentação da aplicação atraves utilizando o swagger        |
+| :page_facing_up: .env.example            | Arquivo para indicação de quais variáveis serão requisitadas no servidor   |
+| :page_facing_up: procfile                | Arquivo requisitado pelo heroku para deploy da aplicação na plataforma na nuvem |
+| :page_facing_up: tsconfig.json           | Arquivo de configuração do typescript e estrutura de pastas, etc.          |
 | :page_facing_up: package.json            | Arquivo usado para gerenciar as dependências do projeto, scripts e versões |

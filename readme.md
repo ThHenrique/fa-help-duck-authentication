@@ -57,10 +57,10 @@ O servidor inciará localmente na porta 3000. Use o Insomnia para simular requis
 | Pasta                                    | Definição                                                                  |
 | ---------------------------------------- | -------------------------------------------------------------------------- |
 | :open_file_folder: node_modules/         | Armazena as bibliotecas (dependências) usadas pelo projeto                 |
-| :open_file_folder: src/ @types           | ...                                                                        |
+| :open_file_folder: src/ @types           | Pasta para adicionar novas tipagens para os modulos do express ex: Request |
 | :open_file_folder: src/ app/ controllers | Arquivos com os métodos de requisição das rotas                            |
 | :open_file_folder: src/ app/ models      | Arquivos considerados moldes/classes da aplicação                          |
-| :page_facing_up: src/ index.ts           | Arquivo inicializador dos modulos da aplicação ex: swagger, cors, servidor...                                                                        |
+| :page_facing_up: src/ index.ts           | Arquivo inicializador dos modulos da aplicação ex: swagger, cors, servidor... |
 | :page_facing_up: src/ routes.ts          | Arquivos com os endpoints da aplicação para acesso dos metodos de autenticação e autorização |
 | :page_facing_up: src/ swagger.json       | Arquivo para documentação da aplicação atraves utilizando o swagger        |
 | :page_facing_up: .env.example            | Arquivo para indicação de quais variáveis serão requisitadas no servidor   |
